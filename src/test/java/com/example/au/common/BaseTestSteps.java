@@ -1,22 +1,26 @@
 package com.example.au.common;
 
+
 import com.example.au.config.BrowserConfig;
 import com.example.au.config.BrowserConfigProperties;
 import com.example.au.config.TestConfig;
+import cucumber.api.java.Before;
+import cucumber.api.java8.En;
 import org.fluentlenium.adapter.junit.FluentTest;
-
-import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = TestConfig.class)
-public class ExampleFluentTest extends FluentTest {
+
+@ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = TestConfig.class)
+public class BaseTestSteps extends FluentTest implements En{
+
+
     @Autowired
     private BrowserConfigProperties config;
+
 
     @Override
     public WebDriver newWebDriver() {
@@ -32,4 +36,7 @@ public class ExampleFluentTest extends FluentTest {
     private BrowserConfig getBrowserConfig() {
         return config.getBrowserConfig();
     }
+
+
+
 }

@@ -6,10 +6,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import static org.openqa.selenium.remote.DesiredCapabilities.chrome;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import static org.openqa.selenium.remote.DesiredCapabilities.chrome;
 
 public enum BrowserType {
 

@@ -1,12 +1,16 @@
 package com.example.au.steps;
 
+import com.example.au.config.BrowserConfig;
+import com.example.au.config.BrowserConfigProperties;
 import com.example.au.config.TestConfig;
 import com.example.au.page.HomePage;
+import cucumber.api.java.Before;
 import cucumber.api.java8.En;
 import org.assertj.core.api.Assertions;
-import org.fluentlenium.adapter.FluentAdapter;
 import org.fluentlenium.adapter.junit.FluentTest;
 import org.fluentlenium.core.annotation.Page;
+import org.openqa.selenium.WebDriver;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
@@ -14,19 +18,20 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 public class LoginSteps extends FluentTest implements En {
 
 
+
     @Page
     private HomePage homePage;
 
-//    @cucumber.api.java.Before
-//    public void beforeTest() {
-//        homePage = newInstance(HomePage.class);
-//    }
+    @Autowired
+    private BrowserConfigProperties config;
+
+
 
    public LoginSteps(){
 
 
        When("^I go to google$", () -> {
-           homePage.goToGoogle();
+           homePage.goToGoogleHomePage();
 
        });
 
@@ -34,4 +39,26 @@ public class LoginSteps extends FluentTest implements En {
            Assertions.assertThat(homePage.isInGoogle()).isTrue();
        });
    }
+
+    @Before
+    public void beforeTest() {
+        this.initFluent(newWebDriver());
+    }
+
+
+    @Override
+    public WebDriver newWebDriver() {
+        BrowserConfig browserConfig = getBrowserConfig();
+        return browserConfig.resolveDriver(browserConfig);
+    }
+
+    @Override
+    public String getBaseUrl() {
+        return config.getPageUrl();
+    }
+
+    private BrowserConfig getBrowserConfig() {
+        return config.getBrowserConfig();
+    }
+
 }
