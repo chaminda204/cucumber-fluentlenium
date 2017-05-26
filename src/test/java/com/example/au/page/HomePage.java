@@ -1,13 +1,12 @@
 package com.example.au.page;
 
 
-import org.assertj.core.api.Assertions;
 import org.fluentlenium.core.FluentPage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-public class HomePage extends FluentPage{
+public class HomePage extends FluentPage {
 
 
     public void goToGoogleHomePage() {
@@ -16,7 +15,7 @@ public class HomePage extends FluentPage{
 
     }
 
-    public boolean isInGoogle(){
+    public boolean isInGoogle() {
         return window().title().contains("Google");
     }
 

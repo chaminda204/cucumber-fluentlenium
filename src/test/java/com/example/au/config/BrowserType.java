@@ -17,7 +17,7 @@ public enum BrowserType {
     CHROME {
         @Override
         public WebDriver getWebDriver() {
-            System.setProperty("webdriver.chrome.driver", "/Users/chaminda/software/chromedriver");
+            System.setProperty("webdriver.chrome.driver", "/usr/local/opt/software/chromedriver");
             return new ChromeDriver();
         }
 
